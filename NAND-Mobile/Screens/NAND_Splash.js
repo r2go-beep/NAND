@@ -6,9 +6,15 @@ export const NAND_Splash = ({route, navigation}) => {
     return (
       <NativeBaseProvider>
         <Center marginTop={"50%"}>
-            <Image source={require('../assets/icon.png')} style={{width: 100, height: 100, margin: 40}}/>
-            <Button >
+            <Image source={require('../assets/icon.png')} alt="photo" style={{width: 100, height: 100, margin: 40}}/>
+            <Button onPress={() => {
+              navigation.push("ProgressScreen")
+            }}>
               Levels
+            </Button>
+            <Button onPress={() => {
+              navigation.push("AchievementsScreen")
+            }}>Achievements
             </Button>
         </Center>
       </NativeBaseProvider>

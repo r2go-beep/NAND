@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NAND_Splash } from "./Screens/NAND_Splash";
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-
+import { ProgressScreen } from "./Screens/ProgressScreen";
+import { AchievementsScreen } from "./Screens/Achievements";
 
 const NavStack = createNativeStackNavigator();
 
@@ -19,7 +20,22 @@ const Screens = (props) => {
           name="NAND_Splash"
           component = {NAND_Splash}
         />
-        
+
+        <NavStack.Screen 
+          name="ProgressScreen"
+          component={ProgressScreen}
+          options={{title: "Levels", 
+          headerRight: () => (
+            <Button title="Settings" onPress={() => alert('Settings!')} />
+          )}}
+        />      
+
+        <NavStack.Screen 
+          name="AchievementsScreen"
+          component={AchievementsScreen}
+          options={{title: "Achievements"}}
+        />
+
   </NavStack.Navigator>
   )
 }
