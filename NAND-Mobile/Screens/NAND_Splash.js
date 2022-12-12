@@ -12,7 +12,7 @@ export const NAND_Splash = ({route, navigation}) => {
               <Button onPress={() => navigation.push("ProgressScreen")} style={styles.button}>
                 <Text style={styles.textNormal}>Levels</Text>
               </Button>
-              <Button onPress={() => navigation.push("ProgressScreen")} style={styles.button}>
+              <Button onPress={() => navigation.push("AchievementsScreen")} style={styles.button}>
                 <Text style={styles.textNormal}>Achievements</Text>
               </Button>
               <Button onPress={() => navigation.push("ProgressScreen")} style={styles.button}>
@@ -20,6 +20,7 @@ export const NAND_Splash = ({route, navigation}) => {
               </Button>
             </Center>
         </ImageBackground>
+
       </NativeBaseProvider>
     )
   }
