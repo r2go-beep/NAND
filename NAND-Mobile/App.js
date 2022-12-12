@@ -19,6 +19,10 @@ const Screens = (props) => {
         <NavStack.Screen 
           name="NAND_Splash"
           component = {NAND_Splash}
+          options = {{
+            title: null, 
+            headerTransparent: true, 
+            headerBackVisible: true}}
         />
 
         <NavStack.Screen 
@@ -36,6 +40,7 @@ const Screens = (props) => {
           options={{title: "Achievements"}}
         />
 
+
   </NavStack.Navigator>
   )
 }
@@ -45,7 +50,6 @@ export default function App() {
         <NativeBaseProvider styles={{fontFamily:'Plus-Jakarta-Sans'}}>
              <NavigationContainer>
               <Screens />
-                
             </NavigationContainer>
         </NativeBaseProvider>
   );
