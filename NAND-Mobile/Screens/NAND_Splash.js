@@ -38,7 +38,7 @@ export const NAND_Splash = ({route, navigation}) => {
       fontSize: "20px",
     },
     textTitle: {
-      padding: 80,
+      paddingVertical: 80,
       fontWeight: "100",
       fontSize: 102,
 
