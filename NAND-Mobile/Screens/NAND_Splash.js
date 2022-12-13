@@ -1,6 +1,6 @@
 import { Image, HStack, NativeBaseProvider, extendTheme, Center, Button, Text, Container} from "native-base";
-import { StyleSheet, ImageBackground} from 'react-native'
-import backgroundImage from '../ImageComponents/LOGO.png'
+import { StyleSheet, ImageBackground } from 'react-native';
+import backgroundImage from '../ImageComponents/LOGO.png';
 
 export const NAND_Splash = ({route, navigation}) => {
   
