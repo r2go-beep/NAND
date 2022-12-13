@@ -73,7 +73,7 @@ export const ProgressScreen = ({route, navigation}) => {
           <Pressable style={styles.sectionContainer} key={Section} onPress={() => setSelectedSection(Section)}>
             <Container style={{width:"100%"}} flexDirection={"row"} >
                 <Text style={styles.sectionText}>{Section}</Text>
-                <Image style={{transform:[{rotate:'90deg'}], resizeMode:"contain", marginLeft:"auto"}} alt="" source={DropDownArrow} />
+                <Image style={selectedSection == Section ? styles.dropDownArrow_down : styles.dropDownArrow_right} alt="" source={DropDownArrow} />
             </Container>
             {selectedSection == Section ? Object.keys(GameJSON["Computer"][Section]).map((CircuitName) => showSectionDropDown(CircuitName)) : null}
           </Pressable>
@@ -83,7 +83,7 @@ export const ProgressScreen = ({route, navigation}) => {
     function showSectionDropDown(CircuitName){
       return (
         <Box style={styles.box} key={CircuitName}>
-            <Text style={{textAlign:"center"}}>{CircuitName}</Text>
+            <Text style={styles.circuitText}>{CircuitName}</Text>
         </Box>
       )
   }
@@ -91,32 +91,46 @@ export const ProgressScreen = ({route, navigation}) => {
     return (
       <NativeBaseProvider>
         <Container >
-              {Object.keys(GameJSON["Computer"]).map((Section) => (showSectionHead(Section)) )}
+          {Object.keys(GameJSON["Computer"]).map((Section) => (showSectionHead(Section)) )}
         </Container>  
       </NativeBaseProvider>
     )
   }
-  
 
   const styles = StyleSheet.create({
-    
-    sectionText: {
+    circuitText: {
       fontWeight: "bold",
-      fontSize: "22px",
+      fontSize: "18px",
+      textAlign:"center",
+      paddingVertical:20,
+      justifyContent:"space-evenly"
+    },
+    sectionText: {
+      paddingTop: 10,
+      fontWeight: "bold",
+      fontSize: "28px",
     },
     sectionContainer:{
-      marginTop:40,
-      marginLeft:10,
+      marginVertical:10,
+      marginLeft:20,
       width:"100%",
       maxWidth:"100%",
     },
     box: {
       borderRadius: 5,
-      marginTop: 5,
+      marginVertical: 5,
       backgroundColor: "#9BFFB1",
       width: "40%",
-      height: 90,
-      maxHeight: "40%",
       justifyContent: "center",
+    },
+    dropDownArrow_down: {
+      transform:[{rotate:'90deg'}],
+      resizeMode:"contain",
+      marginLeft:"auto"
+    },
+    dropDownArrow_right: {
+      resizeMode:"contain",
+      marginLeft:"auto"
     }
+
   })
