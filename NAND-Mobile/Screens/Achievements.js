@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Image, HStack, NativeBaseProvider, extendTheme, Box, Text, Center, Button, Container, Stack, CheckIcon, View, CloseIcon} from "native-base";
 import { StyleSheet } from 'react-native';
+
 export const AchievementsScreen = ({route, navigation}) => {
 
     const GameJSON = {

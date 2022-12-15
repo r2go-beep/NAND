@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ProgressScreen } from "./Screens/ProgressScreen";
 import { AchievementsScreen } from "./Screens/Achievements";
+import { LevelScreen } from "./Screens/LevelScreen";
 
 const NavStack = createNativeStackNavigator();
 
@@ -40,6 +41,11 @@ const Screens = (props) => {
           options={{title: "Achievements"}}
         />
 
+        <NavStack.Screen 
+          name="LevelScreen"
+          component={LevelScreen}
+          options={{title: "Level: {TO DO}"}}
+        />
 
   </NavStack.Navigator>
   )

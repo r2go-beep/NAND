@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet } from 'react-native';
-import { Image, Pressable, NativeBaseProvider, Flex, Box, Text, Center, Container, Stack} from "native-base";
+import { Image, Pressable, NativeBaseProvider, Flex, Box, Text, Center, Container, Stack, Button} from "native-base";
 import DropDownArrow from '../icons/DropDownArrow.png';
 
 
@@ -12,7 +12,8 @@ export const ProgressScreen = ({route, navigation}) => {
              "Nand": {
                "isCompleted": false,
                "logic": "NAND",
-               "prereq": null
+               "prereq": null,
+               "id": 1
              },
              "Invert": {
               "isCompleted": false,
@@ -21,7 +22,7 @@ export const ProgressScreen = ({route, navigation}) => {
             }
            },
            "Arithmetics":{
-             "NAND": {
+             "Nand": {
                "isCompleted": false,
                "logic": "NAND",
                "prereq": null
@@ -83,10 +84,14 @@ export const ProgressScreen = ({route, navigation}) => {
     function showSectionDropDown(CircuitName){
       return (
         <Box style={styles.box} key={CircuitName}>
-            <Text style={styles.circuitText}>{CircuitName}</Text>
+            <Button style={styles.circuitText} onPress={() => navigation.push("LevelScreen")}>{CircuitName}</Button>
         </Box>
       )
   }
+
+    function openLevel(id) {
+      
+    }
 
     return (
       <NativeBaseProvider>
@@ -103,7 +108,7 @@ export const ProgressScreen = ({route, navigation}) => {
       fontSize: "18px",
       textAlign:"center",
       paddingVertical:20,
-      justifyContent:"space-evenly"
+      justifyContent:"space-evenly",
     },
     sectionText: {
       paddingTop: 10,
