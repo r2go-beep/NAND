@@ -27,7 +27,7 @@ export const NAND_Splash = ({route, navigation}) => {
 
   const styles = StyleSheet.create({
     button: {
-      width: "40%",
+      width: "50%",
       margin: 20,
       borderRadius: 5,
       backgroundColor: "#A0A0A0",

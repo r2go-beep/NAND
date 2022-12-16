@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, HStack, NativeBaseProvider, extendTheme, Box, Text, Center, Button, Container, Stack, CheckIcon, View, CloseIcon} from "native-base";
+import { Image, HStack, NativeBaseProvider, extendTheme, Box, Text, Center, Button, Container, Stack, CheckIcon, View, CloseIcon, ScrollView} from "native-base";
 import { StyleSheet } from 'react-native';
 
 export const AchievementsScreen = ({route, navigation}) => {
@@ -7,7 +7,7 @@ export const AchievementsScreen = ({route, navigation}) => {
     const GameJSON = {
         "Player": {
             "Levels": {
-                "Completed": 13
+                "Completed": 14
             }
         },
         "Levels": 75        
@@ -31,7 +31,43 @@ export const AchievementsScreen = ({route, navigation}) => {
                 "name": "Dedicated",
                 "desc": "Beat 50 levels",
                 "prereq": "TO DO",
-                "status": true
+                "status": true 
+            },
+            3: {
+                "name": "Dedicated",
+                "desc": "Beat 50 levels",
+                "prereq": "TO DO",
+                "status": true 
+            },
+            4: {
+                "name": "Dedicated",
+                "desc": "Beat 50 levels",
+                "prereq": "TO DO",
+                "status": true 
+            },
+            5: {
+                "name": "Dedicated",
+                "desc": "Beat 50 levels",
+                "prereq": "TO DO",
+                "status": true 
+            },
+            6: {
+                "name": "Dedicated",
+                "desc": "Beat 50 levels",
+                "prereq": "TO DO",
+                "status": false 
+            },
+            7: {
+                "name": "Dedicated",
+                "desc": "Beat 50 levels",
+                "prereq": "TO DO",
+                "status": true 
+            },
+            8: {
+                "name": "Dedicated",
+                "desc": "Beat 50 levels",
+                "prereq": "TO DO",
+                "status": false 
             }
 
         }
@@ -86,10 +122,12 @@ export const AchievementsScreen = ({route, navigation}) => {
 
     return (
         <NativeBaseProvider>
+        <ScrollView>
             <Center style={styles.container}>
                     <Text style={styles.textTitle}>{completed}%</Text>
                     {Object.keys(AchievementsJSON["Achievements"]).map((id) => (showAchievements(id)))}
             </Center>
+        </ScrollView>
         </NativeBaseProvider>
     )
 }

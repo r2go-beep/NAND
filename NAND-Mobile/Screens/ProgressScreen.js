@@ -87,11 +87,7 @@ export const ProgressScreen = ({route, navigation}) => {
             <Button style={styles.circuitText} onPress={() => navigation.push("LevelScreen")}>{CircuitName}</Button>
         </Box>
       )
-  }
-
-    function openLevel(id) {
-      
-    }
+  }   
 
     return (
       <NativeBaseProvider>
