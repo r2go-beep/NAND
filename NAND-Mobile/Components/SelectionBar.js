@@ -1,26 +1,16 @@
 import React, { useState } from "react";
-import { Image, HStack, ZStack, NativeBaseProvider, extendTheme, Box, Text, Center, Button, Container, Stack, CheckIcon, View, CloseIcon, Pressable, CircleIcon, Modal} from "native-base";
+import {Box, Text, Center, Pressable, CircleIcon, Modal} from "native-base";
 import { StyleSheet } from 'react-native';
 import { TableOne } from "../Components/Tables";
-import { CircuitComponent } from "../Components/CircuitComponent";
-import { SelectionBar } from "../Components/SelectionBar";
 
-export const LevelScreen = ({route, navigation}) => {
-    
-    const [circuitName, setCircuitName] = useState(route.params.circuitName);
+export const SelectionBar = () => {
 
     const [showSpecModal, setShowSpecModal] = useState(false);
     const [isErase, setIsErase] = useState(false);
     const [showToolboxModal, setShowToolboxModal] = useState(false);
     const [showHintModal, setShowHintModal] = useState(false);
 
-    /*
-    TO DO:
-    - develop individual components that represent each logic gate
-    - render these as their own components (<Nand />, <Xor />, <Or />)
-    - components have an image, text, and carry information about their input/output
-    */
-
+    
     const LevelJSON = {
         "Game": {
             "Logic Gates": {
@@ -75,14 +65,35 @@ export const LevelScreen = ({route, navigation}) => {
     }
        
     return (
-        <NativeBaseProvider>
-            <Center style={{width:"100%", maxWidth:"100%"}}>
-                <Container style={styles.gameBox} >
-                    <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
-                </Container>
-                <SelectionBar />
-            </Center>
-        </NativeBaseProvider>
+        <Box alignSelf="center" style={styles.toolBox}>
+            <Pressable onPress={() => {setShowSpecModal(true)}} opacity={showSpecModal ? 1 : 0.5}>
+                {showSpecModal && <SpecModal />}
+                <Center>
+                    <CircleIcon />
+                    <Text>Spec</Text>
+                </Center>
+            </Pressable>
+            <Pressable onPress={() => {setShowToolboxModal(true)}} opacity={showToolboxModal ? 1 : 0.5}>
+                {showToolboxModal && <ToolboxModal />}
+                <Center>
+                    <CircleIcon />
+                    <Text>Toolbox</Text>
+                </Center>
+            </Pressable>
+            <Pressable onPress={() => setIsErase(!isErase)} opacity={isErase ? 1 : 0.5}>
+                <Center>
+                    <CircleIcon />
+                    <Text>Erase</Text>
+                </Center>
+            </Pressable>
+            <Pressable onPress={() => {setShowHintModal(true)}} opacity={showHintModal ? 1 : 0.5}>
+                {showHintModal && <HintModal />}
+                <Center>
+                    <CircleIcon />
+                    <Text>Hint</Text>
+                </Center>
+            </Pressable>
+        </Box>
     )
 };
 

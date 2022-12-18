@@ -84,7 +84,7 @@ export const ProgressScreen = ({route, navigation}) => {
     function showSectionDropDown(CircuitName){
       return (
         <Box style={styles.box} key={CircuitName}>
-            <Button style={styles.circuitText} onPress={() => navigation.push("LevelScreen")}>{CircuitName}</Button>
+            <Button style={styles.circuitText} onPress={() => navigation.push("LevelScreen",{"circuitName":CircuitName})}>{CircuitName}</Button>
         </Box>
       )
   }   

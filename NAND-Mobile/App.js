@@ -44,7 +44,7 @@ const Screens = (props) => {
         <NavStack.Screen 
           name="LevelScreen"
           component={LevelScreen}
-          options={{title: "Level: {TO DO}"}}
+          options={({route}) => ({title: `Level: ${route.params.circuitName}`})}
         />
 
   </NavStack.Navigator>
