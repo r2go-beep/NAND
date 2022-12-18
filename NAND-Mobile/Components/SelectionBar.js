@@ -3,24 +3,12 @@ import {Box, Text, Center, Pressable, CircleIcon, Modal} from "native-base";
 import { StyleSheet } from 'react-native';
 import { TableOne } from "../Components/Tables";
 
-export const SelectionBar = () => {
+export const SelectionBar = ({TruthTable, Hint, onErase}) => {
 
     const [showSpecModal, setShowSpecModal] = useState(false);
     const [isErase, setIsErase] = useState(false);
     const [showToolboxModal, setShowToolboxModal] = useState(false);
     const [showHintModal, setShowHintModal] = useState(false);
-
-    
-    const LevelJSON = {
-        "Game": {
-            "Logic Gates": {
-                "Nand": {
-                    "TruthTable": [{a: 0, b: 0, output: 1}, {a: 0, b: 1, output: 1}],
-                    "Hint": "Try using only Nand gates"
-                }
-            } 
-        }
-    }
 
     function SpecModal() {
         return(
@@ -29,7 +17,7 @@ export const SelectionBar = () => {
                     <Modal.CloseButton />
                     <Modal.Header>Truth Table</Modal.Header>
                     <Modal.Body>
-                    <TableOne data={LevelJSON["Game"]["Logic Gates"]["Nand"]["TruthTable"]}/>
+                        <TableOne data={TruthTable}/>
                     </Modal.Body>
                 </Modal.Content>
             </Modal>
@@ -57,7 +45,7 @@ export const SelectionBar = () => {
                     <Modal.CloseButton />
                     <Modal.Header>Hint</Modal.Header>
                     <Modal.Body>
-                        <Text>{LevelJSON["Game"]["Logic Gates"]["Nand"]["Hint"]}</Text>
+                        <Text>{Hint}</Text>
                     </Modal.Body>
                 </Modal.Content>
             </Modal>
@@ -80,7 +68,7 @@ export const SelectionBar = () => {
                     <Text>Toolbox</Text>
                 </Center>
             </Pressable>
-            <Pressable onPress={() => setIsErase(!isErase)} opacity={isErase ? 1 : 0.5}>
+            <Pressable onPress={() => {onErase(), setIsErase(!isErase)}} opacity={isErase ? 1 : 0.5}>
                 <Center>
                     <CircleIcon />
                     <Text>Erase</Text>

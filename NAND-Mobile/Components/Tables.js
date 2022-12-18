@@ -2,16 +2,28 @@ import { FlatList, Text, View } from 'react-native'
 import React from "react";
 
 /* Specs Table
-data = [[0, 0, 1], [0, 1, 1]]
 
 --Input--|--Output--
 a  |  b  |  
+---------------------
 0  | 0   | 1
+
 */
-/*    const data = [
-            {a: 0, b: 0, output: 1},
-            {a: 0, b: 1, output: 1}
-        ] */
+/* 
+[{
+    input: {
+        a: string,
+        b: string,
+        c: string,
+        d: string,
+    },
+    output: {
+        x: string,
+        y, string
+    },
+    
+}]
+*/
 
 export const TableOne = ({data}) => {
     

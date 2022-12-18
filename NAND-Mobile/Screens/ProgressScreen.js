@@ -59,14 +59,7 @@ export const ProgressScreen = ({route, navigation}) => {
          }
      }
 
-    /*
-    Logic Gates:
-        Nand:
-        Invert
-        And
-    Arithmetics
 
-    */
     const [selectedSection, setSelectedSection] = useState("Logic Gates")//TODO: create function to find last non completed level
 
     function showSectionHead(Section){
