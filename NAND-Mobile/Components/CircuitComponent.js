@@ -1,8 +1,8 @@
-import {  StyleSheet } from 'react-native'
+import {  StyleSheet, PanResponder, Animated, View } from 'react-native'
 import { Text, Box, Container, } from 'native-base'
-import React from "react";
+import React, { useRef } from "react";
 
-export const CircuitComponent = ({name, inputChars, outputChars}) => {
+export const CircuitComponent = ({name, inputChars, outputChars, borderWidth, borderHeight}) => {
 
     function IOBox(IOChar) {
         return(
@@ -11,20 +11,48 @@ export const CircuitComponent = ({name, inputChars, outputChars}) => {
             </Box>
         )
     }
+
+    const pan = useRef(new Animated.ValueXY()).current;
+
+    const panResponder = useRef(
+        PanResponder.create({
+        onMoveShouldSetPanResponder: () => true,
+        onPanResponderGrant: () => {
+            pan.setOffset({
+            x: pan.x._value,
+            y: pan.y._value
+            });
+        },
+        onPanResponderMove: Animated.event(
+            [
+            null,
+            { dx: pan.x, dy: pan.y }
+            ]
+        ),
+        onPanResponderRelease: () => {
+            pan.flattenOffset();
+        }
+        })
+    ).current;
+
     return (
-        <Container>
-            <Container style={styles.IOContainer}>
-                {outputChars.map((outputChar) => (IOBox(outputChar)))}
+        <Animated.View style={{transform: [{ translateX: pan.x.interpolate({inputRange:[0, 205], outputRange:[0, 205], extrapolate:"clamp"}) }, { translateY: pan.y }]
+        }}
+        {...panResponder.panHandlers}>
+            <Container>
+                <Container style={styles.IOContainer}>
+                    {outputChars.map((outputChar) => (IOBox(outputChar)))}
+                </Container>
+                <Box style={styles.circuitBox}>
+                    <Text>
+                        {name}
+                    </Text>
+                </Box>
+                <Container style={styles.IOContainer}>
+                    {inputChars.map((inputChar) => (IOBox(inputChar)))}
+                </Container>
             </Container>
-            <Box style={styles.circuitBox}>
-                <Text>
-                    {name}
-                </Text>
-            </Box>
-            <Container style={styles.IOContainer}>
-                {inputChars.map((inputChar) => (IOBox(inputChar)))}
-            </Container>
-        </Container>
+        </Animated.View>
     )
 }
 

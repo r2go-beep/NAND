@@ -23,14 +23,14 @@ export const LevelScreen = ({route, navigation}) => {
        
     return (
         <NativeBaseProvider>
-            <Center style={{width:"100%", maxWidth:"100%"}}>
+            <View style={{width:"100%", maxWidth:"100%"}}>
                 <Container style={styles.gameBox} >
                     <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
                 </Container>
                 <SelectionBar 
-                    levelName={circuitName} 
+                    TruthTable={LevelJSON["Game"]["Logic Gates"]["Nand"]["TruthTable"]} 
                     Hint={LevelJSON["Game"]["Logic Gates"]["Nand"]["Hint"]} />
-            </Center>
+            </View>
         </NativeBaseProvider>
     )
 };

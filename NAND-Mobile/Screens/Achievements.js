@@ -11,7 +11,7 @@ export const AchievementsScreen = ({route, navigation}) => {
     ) 
 
     function showAchievements(elem){
-        if (elem["requirement"] > PlayerJSON["Player"]["Levels"]["completed"]) {
+        if (elem["requirement"] >= PlayerJSON["Player"]["Levels"]["completed"]) {
             return (
                 <Box key={elem["name"]} style={styles.box}>
                     <CloseIcon size="7" mt="0.5" color="red.500" marginRight="6"/> 
@@ -36,7 +36,7 @@ export const AchievementsScreen = ({route, navigation}) => {
         <NativeBaseProvider>
         <ScrollView>
             <Center style={styles.container}>
-                    <Text style={styles.textTitle}>{percentCompleted}%</Text>
+                    <Text style={styles.textTitle}>{percentCompleted > 100 ? 100 : percentCompleted < 0 ? 0 : percentCompleted}%</Text>
                     {AchievementsJSON["Game"]["Achievements"].map((elem) => showAchievements(elem))}
             </Center>
         </ScrollView>

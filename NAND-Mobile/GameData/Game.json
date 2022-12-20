@@ -73,7 +73,18 @@
         "Achievements": [
             {
                 "name": "The Ultimate Start",
-                "desc": "Beat Level 1"
+                "desc": "Beat Level 1",
+                "requirement": 0
+            },
+            {
+                "name": "Proficiency",
+                "desc": "Beat 10 levels",
+                "requirement": 9
+            },
+            {
+                "name": "Master",
+                "desc": "Beat 50 levels",
+                "requirement": 49
             }
         ]
     }
