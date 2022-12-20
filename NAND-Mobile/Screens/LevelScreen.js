@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import { TableOne } from "../Components/Tables";
 import { CircuitComponent } from "../Components/CircuitComponent";
 import { SelectionBar } from "../Components/SelectionBar";
+import * as PlayerJSON from "../GameData/Player.json"
 
 export const LevelScreen = ({route, navigation}) => {
     
@@ -20,7 +21,6 @@ export const LevelScreen = ({route, navigation}) => {
         }
     }
 
-       
     return (
         <NativeBaseProvider>
             <View style={{width:"100%", maxWidth:"100%"}}>

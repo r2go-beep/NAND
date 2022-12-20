@@ -27,7 +27,8 @@ export const CircuitComponent = ({name, inputChars, outputChars, borderWidth, bo
             [
             null,
             { dx: pan.x, dy: pan.y }
-            ]
+            ],
+            {useNativeDriver: false}
         ),
         onPanResponderRelease: () => {
             pan.flattenOffset();

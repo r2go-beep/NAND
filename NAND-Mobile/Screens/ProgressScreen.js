@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Image, Pressable, NativeBaseProvider, Flex, Box, Text, Center, Container, Stack, Button} from "native-base";
 import DropDownArrow from '../icons/DropDownArrow.png';
 import { GetCatagories, GetLevelNamesFromCategory } from "../GameData/LevelSelectLogic";
+import { checkLevelCompletion } from "../GameData/levelCompleted";
 
 export const ProgressScreen = ({route, navigation}) => {
   
@@ -22,11 +23,11 @@ export const ProgressScreen = ({route, navigation}) => {
     }
 
     function showSectionDropDown(LevelName){
-      return (
-        <Box style={styles.box} key={LevelName}>
-            <Button style={styles.circuitText} onPress={() => navigation.push("LevelScreen",{"circuitName":LevelName})}>{LevelName}</Button>
-        </Box>
-      )
+        return (
+          <Box style={styles.box} key={LevelName}>
+              <Button color={"black"} style={checkLevelCompletion(LevelName) === true ? styles.circuitTextCompleted : styles.circuitTextNotCompleted} onPress={() => navigation.push("LevelScreen",{"circuitName":LevelName})}><Text style={styles.buttonText}>{LevelName}</Text></Button>
+          </Box> 
+        )
   }   
 
     return (
@@ -39,12 +40,27 @@ export const ProgressScreen = ({route, navigation}) => {
   }
 
   const styles = StyleSheet.create({
-    circuitText: {
+    buttonText: {
       fontWeight: "bold",
+      fontSize: "18px",
+      textAlign:"center",   
+      color: "black"
+    },
+    circuitTextCompleted: {
+      fontWeight: "bold",
+      backgroundColor: "#9BFFB1",
       fontSize: "18px",
       textAlign:"center",
       paddingVertical:20,
-      justifyContent:"space-evenly",
+      justifyContent:"space-evenly", 
+    },
+    circuitTextNotCompleted: {
+      fontWeight: "bold",
+      backgroundColor: "#D9D9D9",
+      fontSize: "18px",
+      textAlign:"center",
+      paddingVertical:20,
+      justifyContent:"space-evenly"
     },
     sectionText: {
       paddingTop: 10,
@@ -55,12 +71,11 @@ export const ProgressScreen = ({route, navigation}) => {
       marginVertical:10,
       marginLeft:20,
       width:"100%",
-      maxWidth:"100%",
+      maxWidth:"100%",    
     },
     box: {
       borderRadius: 5,
       marginVertical: 5,
-      backgroundColor: "#9BFFB1",
       width: "40%",
       justifyContent: "center",
     },

@@ -2,12 +2,12 @@
     "Game": {
         "Levels": {
             "NAND": {
-                "Catagory": "Simple Circuits",
+                "Category": "Simple Circuits",
                 "Local_Name": "NAND",
                 "output": ["!(a && b)"],
                 "hint": "Try to make a circuit that is inactive when both inputs are active.",
                 "input": ["a","b"],
-                "prereq": null,
+                "prereq": 0,
                 "truthtable": [
                     {
                         "input": {
@@ -45,12 +45,12 @@
                 ]
             }, 
             "INVERT": {
-                "Catagory": "Simple Circuits",
+                "Category": "Simple Circuits",
                 "Local_Name": "Invert",
                 "output": ["!a"],
                 "hint": "Try to make a circuit that invers the given input.",
                 "input": ["a"],
-                "prereq": "NAND",
+                "prereq": 1,
                 "truthtable": [
                     {
                         "input": {

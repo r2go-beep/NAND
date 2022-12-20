@@ -7,7 +7,7 @@ export function GetCatagories () {
     return(
         [...new Set(
             Object.keys(GameJSON["Game"]["Levels"]).map(
-                (LevelName) => GameJSON["Game"]["Levels"][LevelName]["Catagory"]
+                (LevelName) => GameJSON["Game"]["Levels"][LevelName]["Category"]
             )
         )]
     )
@@ -17,7 +17,7 @@ export function GetLevelNamesFromCategory(Category) {
     return(
         [...new Set(
             Object.keys(GameJSON["Game"]["Levels"]).map(
-                (LevelName) => (GameJSON["Game"]["Levels"][LevelName]["Catagory"] == Category ? LevelName : null)
+                (LevelName) => (GameJSON["Game"]["Levels"][LevelName]["Category"] == Category ? GameJSON["Game"]["Levels"][LevelName]["Local_Name"] : null)
             )
         )]
     )
