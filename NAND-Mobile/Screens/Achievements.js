@@ -1,121 +1,33 @@
 import React, { useState } from "react";
 import { Image, HStack, NativeBaseProvider, extendTheme, Box, Text, Center, Button, Container, Stack, CheckIcon, View, CloseIcon, ScrollView} from "native-base";
 import { StyleSheet } from 'react-native';
+import * as AchievementsJSON from "../GameData/Game.json"
+import * as PlayerJSON from "../GameData/Player.json"
 
 export const AchievementsScreen = ({route, navigation}) => {
 
-    const GameJSON = {
-        "Player": {
-            "Levels": {
-                "Completed": 14
-            }
-        },
-        "Levels": 75        
-    }
+    const [percentCompleted, setPerecentCompleted] = useState(
+        Math.round((PlayerJSON["Player"]["Levels"]["completed"] / Object.keys(AchievementsJSON["Game"]["Levels"]).length) * 100)
+    ) 
 
-    const AchievementsJSON = {
-        "Achievements": {
-            1: {
-                "name": "Getting Started",
-                "desc": "Beat level 1",
-                "prereq": "TO DO",
-                "status": true,
-            },
-            2: {
-                "name": "Sticking to it",
-                "desc": "Beat Level 2",
-                "prereq": "TO DO",
-                "status": false,
-            },
-            3: {
-                "name": "Dedicated",
-                "desc": "Beat 50 levels",
-                "prereq": "TO DO",
-                "status": true 
-            },
-            3: {
-                "name": "Dedicated",
-                "desc": "Beat 50 levels",
-                "prereq": "TO DO",
-                "status": true 
-            },
-            4: {
-                "name": "Dedicated",
-                "desc": "Beat 50 levels",
-                "prereq": "TO DO",
-                "status": true 
-            },
-            5: {
-                "name": "Dedicated",
-                "desc": "Beat 50 levels",
-                "prereq": "TO DO",
-                "status": true 
-            },
-            6: {
-                "name": "Dedicated",
-                "desc": "Beat 50 levels",
-                "prereq": "TO DO",
-                "status": false 
-            },
-            7: {
-                "name": "Dedicated",
-                "desc": "Beat 50 levels",
-                "prereq": "TO DO",
-                "status": true 
-            },
-            8: {
-                "name": "Dedicated",
-                "desc": "Beat 50 levels",
-                "prereq": "TO DO",
-                "status": false 
-            }
-
-        }
-    }
-
-    const [completed, setCompleted] = useState(() => {
-        // TO DO code to calculate percent completed
-        // player stats: completed levels / total levels 
-        const percentCompleted = GameJSON["Player"]["Levels"]["Completed"] / GameJSON["Levels"]
-        return Math.round(percentCompleted * 100)
-    })
-
-    /*
-    Achievements:
-        1:
-            name: "Beat level 1"
-            prereq: TO DO: figure it out
-            status:
-        2: 
-            name:
-            prereq:
-            status:
-        3:
-            name:
-            prereq:
-            status:
-
-    */
-
-    function showAchievements(id){
-
-        if (AchievementsJSON["Achievements"][id]["status"] === false) {
+    function showAchievements(elem){
+        if (elem["requirement"] > PlayerJSON["Player"]["Levels"]["completed"]) {
             return (
-                <Box key={id} style={styles.box}>
+                <Box key={elem["name"]} style={styles.box}>
                     <CloseIcon size="7" mt="0.5" color="red.500" marginRight="6"/> 
                     <Container>
-                        <Text style={styles.locked}>{AchievementsJSON["Achievements"][id]["name"]}</Text>
-                        <Text style={styles.achievementDesc_locked}>{AchievementsJSON["Achievements"][id]["desc"]}</Text>
+                        <Text style={styles.locked}>{elem["name"]}</Text>
+                        <Text style={styles.achievementDesc_locked}>{elem["desc"]}</Text>
                     </Container>
                 </Box>) 
         }
 
         return (
-        <Box key={id} style={styles.box}>
+        <Box key={elem["name"]} style={styles.box}>
             <CheckIcon size="7" mt="0.5" color="emerald.500" marginRight="6"/>
             <Container>
-                <Text style={styles.unlocked}>{AchievementsJSON["Achievements"][id]["name"]}</Text>
-                <Text style={styles.achievementDesc}>{AchievementsJSON["Achievements"][id]["desc"]}</Text>
+                <Text style={styles.unlocked}>{elem["name"]}</Text>
+                <Text style={styles.achievementDesc}>{elem["desc"]}</Text>
             </Container>
         </Box>)
     }
@@ -124,8 +36,8 @@ export const AchievementsScreen = ({route, navigation}) => {
         <NativeBaseProvider>
         <ScrollView>
             <Center style={styles.container}>
-                    <Text style={styles.textTitle}>{completed}%</Text>
-                    {Object.keys(AchievementsJSON["Achievements"]).map((id) => (showAchievements(id)))}
+                    <Text style={styles.textTitle}>{percentCompleted}%</Text>
+                    {AchievementsJSON["Game"]["Achievements"].map((elem) => showAchievements(elem))}
             </Center>
         </ScrollView>
         </NativeBaseProvider>

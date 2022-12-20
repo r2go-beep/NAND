@@ -28,7 +28,7 @@ export const LevelScreen = ({route, navigation}) => {
                     <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
                 </Container>
                 <SelectionBar 
-                    TruthTable={LevelJSON["Game"]["Logic Gates"]["Nand"]["TruthTable"]} 
+                    levelName={circuitName} 
                     Hint={LevelJSON["Game"]["Logic Gates"]["Nand"]["Hint"]} />
             </Center>
         </NativeBaseProvider>

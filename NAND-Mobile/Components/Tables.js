@@ -1,5 +1,6 @@
 import { FlatList, Text, View } from 'react-native'
 import React from "react";
+import { GetTruthHeaders } from '../GameData/LevelSelectLogic';
 
 /* Specs Table
 
@@ -25,7 +26,18 @@ a  |  b  |
 }]
 */
 
-export const TableOne = ({data}) => {
+export const TableOne = ({ levelName }) => {
+
+    function TableHeaders(headerName)
+    {    
+        return(
+            <View style={{width: 50}}>
+                <Text style={{fontSize: 16, textAlign: "center"}}>
+                    {headerName}
+                </Text>
+            </View>
+        )
+    }
     
     const item = ({ item }) => (
         <View style={{flexDirection: "row"}}>
@@ -43,7 +55,10 @@ export const TableOne = ({data}) => {
 
     return (
         <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-            <FlatList data={data} renderItem={item}/>
+            <View style={{flexDirection: "row"}}>
+                {GetTruthHeaders(levelName).map((headerName) => TableHeaders(headerName))}
+            </View>
+            <FlatList renderItem={item}/>
         </View>
     )
 }

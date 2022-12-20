@@ -12,3 +12,19 @@ export function GetCatagories () {
         )]
     )
 }
+
+export function GetLevelNamesFromCategory(Category) {
+    return(
+        [...new Set(
+            Object.keys(GameJSON["Game"]["Levels"]).map(
+                (LevelName) => (GameJSON["Game"]["Levels"][LevelName]["Catagory"] == Category ? LevelName : null)
+            )
+        )]
+    )
+}
+
+export function GetTruthHeaders(LevelName) {
+    return(
+        Object.keys(GameJSON["Game"]["Levels"][LevelName]["truthtable"][0])
+    )
+}

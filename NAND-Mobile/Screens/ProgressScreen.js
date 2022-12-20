@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { StyleSheet } from 'react-native';
 import { Image, Pressable, NativeBaseProvider, Flex, Box, Text, Center, Container, Stack, Button} from "native-base";
 import DropDownArrow from '../icons/DropDownArrow.png';
-import { GetCatagories } from "../GameData/LevelSelectLogic";
+import { GetCatagories, GetLevelNamesFromCategory } from "../GameData/LevelSelectLogic";
 
 export const ProgressScreen = ({route, navigation}) => {
   
 
-    const [selectedSection, setSelectedSection] = useState("Logic Gates")//TODO: create function to find last non completed level
+    const [selectedSection, setSelectedSection] = useState(GetCatagories()[0])//TODO: create function to find last non completed level
 
     function showSectionHead(Section){
         return (
@@ -16,15 +16,15 @@ export const ProgressScreen = ({route, navigation}) => {
                 <Text style={styles.sectionText}>{Section}</Text>
                 <Image style={selectedSection == Section ? styles.dropDownArrow_down : styles.dropDownArrow_right} alt="" source={DropDownArrow} />
             </Container>
-            {selectedSection == Section ? Object.keys().map((CircuitName) => showSectionDropDown(CircuitName)) : null}
+            {selectedSection == Section ? GetLevelNamesFromCategory(Section).map((LevelName) => showSectionDropDown(LevelName)) : null}
           </Pressable>
         )
     }
 
-    function showSectionDropDown(CircuitName){
+    function showSectionDropDown(LevelName){
       return (
-        <Box style={styles.box} key={CircuitName}>
-            <Button style={styles.circuitText} onPress={() => navigation.push("LevelScreen",{"circuitName":CircuitName})}>{CircuitName}</Button>
+        <Box style={styles.box} key={LevelName}>
+            <Button style={styles.circuitText} onPress={() => navigation.push("LevelScreen",{"circuitName":LevelName})}>{LevelName}</Button>
         </Box>
       )
   }   
