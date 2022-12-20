@@ -2,43 +2,70 @@
     "Game": {
         "Levels": {
             "NAND": {
-                "output": "!(a && b)",
-                "truthtable": [{
-                    "input": {
-                        "a": "0",
-                        "b": "0"
-                    },
-                    "output": {
-                        "z": "1"
+                "Local_Name": "NAND",
+                "output": ["!(a && b)"],
+                "hint": "Try to make a circuit that is inactive when both inputs are active.",
+                "input": ["a","b"],
+                "prereq": null,
+                "truthtable": [
+                    {
+                        "input": {
+                            "a": "0",
+                            "b": "0"
+                        },
+                        "output": {
+                            "z": "1"
+                        }
+                    }, {
+                        "input": {
+                            "a": "0",
+                            "b": "1"
+                        },
+                        "output": {
+                            "z": "1"
+                        }
+                    }, {
+                        "input": {
+                            "a": "1",
+                            "b": "0"
+                        },
+                        "output": {
+                            "z": "1"
+                        }
+                    }, {
+                        "input": {
+                            "a": "1",
+                            "b": "1"
+                        },
+                        "output": {
+                            "z": "0"
+                        }
                     }
-                }, {
-                    "input": {
-                        "a": "0",
-                        "b": "1"
-                    },
-                    "output": {
-                        "z": "1"
-                    }
-                }, {
-                    "input": {
-                        "a": "1",
-                        "b": "0"
-                    },
-                    "output": {
-                        "z": "1"
-                    }
-                }, {
-                    "input": {
-                        "a": "1",
-                        "b": "1"
-                    },
-                    "output": {
-                        "z": "0"
-                    }
-                }]
+                ]
             }, 
-            "Invert": {
-
+            "INVERT": {
+                "Local_Name": "Invert",
+                "output": ["!a"],
+                "hint": "Try to make a circuit that invers the given input.",
+                "input": ["a"],
+                "prereq": "NAND",
+                "truthtable": [
+                    {
+                        "input": {
+                            "a": "0"
+                        },
+                        "output": {
+                            "z": "1"
+                        }
+                    }, {
+                        "input": {
+                            "a": "1"
+                        },
+                        "output": {
+                            "z": "0"
+                        }
+                    }
+                ]
             }
         }, 
         "Achievements": [

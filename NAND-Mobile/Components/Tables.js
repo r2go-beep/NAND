@@ -29,7 +29,7 @@ export const TableOne = ({data}) => {
     
     const item = ({ item }) => (
         <View style={{flexDirection: "row"}}>
-            <View style={{width: 50}}>
+            <View style={{width: 50, borderRadius: 1}}>
                 <Text style={{fontSize: 16, textAlign: "center"}}>{item.a}</Text>
             </View>
             <View style={{width: 50}}>
