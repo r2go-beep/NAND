@@ -1,0 +1,51 @@
+{
+    "Game": {
+        "Levels": {
+            "NAND": {
+                "output": "!(a && b)",
+                "truthtable": [{
+                    "input": {
+                        "a": "0",
+                        "b": "0"
+                    },
+                    "output": {
+                        "z": "1"
+                    }
+                }, {
+                    "input": {
+                        "a": "0",
+                        "b": "1"
+                    },
+                    "output": {
+                        "z": "1"
+                    }
+                }, {
+                    "input": {
+                        "a": "1",
+                        "b": "0"
+                    },
+                    "output": {
+                        "z": "1"
+                    }
+                }, {
+                    "input": {
+                        "a": "1",
+                        "b": "1"
+                    },
+                    "output": {
+                        "z": "0"
+                    }
+                }]
+            }, 
+            "Invert": {
+
+            }
+        }, 
+        "Achievements": [
+            {
+                "name": "The Ultimate Start",
+                "desc": "Beat Level 1"
+            }
+        ]
+    }
+}

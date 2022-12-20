@@ -4,7 +4,6 @@ import React from "react";
 
 export const CircuitComponent = ({name, inputChars, outputChars}) => {
 
-
     function IOBox(IOChar) {
         return(
             <Box style={styles.IOBox} key={IOChar}>
