@@ -46,7 +46,7 @@ export const CircuitComponent = ({name, inputChars, outputChars, borderWidth, bo
                 </Container>
                 <Box style={styles.circuitBox}>
                     <Text>
-                        {name}
+                        {name.toLowerCase()}
                     </Text>
                 </Box>
                 <Container style={styles.IOContainer}>
@@ -60,7 +60,7 @@ export const CircuitComponent = ({name, inputChars, outputChars, borderWidth, bo
 const styles = StyleSheet.create({
     circuitBox: {
         alignSelf: "center",
-        backgroundColor: "#BEBEBE",
+        backgroundColor: "#FFFFFF",
         paddingVertical: 20,
         paddingHorizontal: 30,
         borderRadius: 15,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         borderRadius: 45,
         borderWidth: 1,
-        backgroundColor: "#BEBEBE",
+        backgroundColor: "#FFFFFF",
     },
     IOContainer: {
         zIndex: 4,

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { TableOne } from "../Components/Tables";
 import { CircuitComponent } from "../Components/CircuitComponent";
 import { SelectionBar } from "../Components/SelectionBar";
-import * as PlayerJSON from "../GameData/Player.json"
+import { PassedOverlay } from "./PassedOverlay";
 
 export const LevelScreen = ({route, navigation}) => {
     
@@ -26,10 +26,11 @@ export const LevelScreen = ({route, navigation}) => {
             <View style={{width:"100%", maxWidth:"100%"}}>
                 <Container style={styles.gameBox} >
                     <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
-                </Container>
+                </Container> 
                 <SelectionBar 
                     TruthTable={LevelJSON["Game"]["Logic Gates"]["Nand"]["TruthTable"]} 
                     Hint={LevelJSON["Game"]["Logic Gates"]["Nand"]["Hint"]} />
+                <PassedOverlay key={circuitName} name={circuitName}/>
             </View>
         </NativeBaseProvider>
     )
