@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { NativeBaseProvider, extendTheme, Box, Text, Center, Button, Container, Stack, CheckIcon, View, CloseIcon, Pressable, CircleIcon, Modal} from "native-base";
+import { NativeBaseProvider, View, Box} from "native-base";
 import { StyleSheet } from 'react-native';
-import { TableOne } from "../Components/Tables";
 import { CircuitComponent } from "../Components/CircuitComponent";
 import { SelectionBar } from "../Components/SelectionBar";
 import { PassedOverlay } from "./PassedOverlay";
+import * as PlayerJSON from "../GameData/Player.json"
+import * as GameJSON from "../GameData/Game.json"
 
 export const LevelScreen = ({route, navigation}) => {
     
     const [circuitName, setCircuitName] = useState(route.params.circuitName);
+    const [isComplete, setIsComplete] = useState((PlayerJSON["Player"]["Levels"]["completed"] > GameJSON["Game"]["Levels"][circuitName.toUpperCase()]["prereq"]))
 
     const LevelJSON = {
         "Game": {
@@ -23,14 +25,14 @@ export const LevelScreen = ({route, navigation}) => {
 
     return (
         <NativeBaseProvider>
-            <View style={{width:"100%", maxWidth:"100%"}}>
-                <Container style={styles.gameBox} >
+            <View>
+                <Box style={styles.gameBox} >
                     <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
-                </Container> 
+                </Box> 
                 <SelectionBar 
                     TruthTable={LevelJSON["Game"]["Logic Gates"]["Nand"]["TruthTable"]} 
                     Hint={LevelJSON["Game"]["Logic Gates"]["Nand"]["Hint"]} />
-                <PassedOverlay key={circuitName} name={circuitName}/>
+                {isComplete && <PassedOverlay key={circuitName} name={circuitName}/>}
             </View>
         </NativeBaseProvider>
     )
@@ -44,8 +46,7 @@ const styles = StyleSheet.create({
         width: "100%",
         minHeight: "80%",
         maxHeight: "80%",
-        borderRadius: 15,
         borderColor: "black",
         borderWidth: 2
-    }
+    },
 })
