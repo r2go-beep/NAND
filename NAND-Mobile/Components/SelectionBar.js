@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Box, Text, Center, Pressable, CircleIcon, Modal} from "native-base";
+import {Box, Text, Center, Pressable, CircleIcon, Modal, View} from "native-base";
 import { StyleSheet } from 'react-native';
 import { TableOne } from "../Components/Tables";
 

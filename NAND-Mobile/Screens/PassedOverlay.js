@@ -4,21 +4,13 @@ import { StyleSheet } from 'react-native';
 import * as PlayerJSON from "../GameData/Player.json"
 import * as GameJSON from "../GameData/Game.json"
 
-const checkIfLevelCompleted = (name) => {
-    if (PlayerJSON["Player"]["Levels"]["completed"] > GameJSON["Game"]["Levels"][name.toUpperCase()]["prereq"]) {
-        return true
-    }
-
-    return false
-}
-
 export const PassedOverlay = ({name}) => {
 
-    const [showModal, setShowModal] = useState(() => checkIfLevelCompleted(name))
+    const [showModal, setShowModal] = useState(true)
 
     return (
         <Center>
-            <Modal blurRadius={3} isOpen={showModal} size="xl" onClose={() => (setShowModal(false))}>
+            <Modal blurRadius={3} backgroundColor="rgba(255, 255, 255, 0.5)" isOpen={showModal} size="xl" onClose={() => (setShowModal(false))}>
                 <Modal.Content style={styles.modal}>
                     <Modal.Body>
                     <Center>
@@ -36,7 +28,7 @@ export const PassedOverlay = ({name}) => {
 
 const styles = StyleSheet.create({
     modal: {
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 0)',
     },
     modalText : { 
         fontSize: 56,
