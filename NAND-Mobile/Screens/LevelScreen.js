@@ -21,7 +21,8 @@ export const LevelScreen = ({route, navigation}) => {
                 </Box> 
                 <SelectionBar 
                     TruthTable={circuitData["truthtable"]} 
-                    Hint={circuitData["hint"]} />
+                    Hint={circuitData["hint"]}
+                    onErase={console.log("Erase was pressed")} />
                 {isComplete && <PassedOverlay key={circuitName} name={circuitName}/>}
 
             </View>
