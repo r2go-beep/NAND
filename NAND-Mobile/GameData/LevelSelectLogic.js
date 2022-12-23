@@ -23,8 +23,8 @@ export function GetLevelNamesFromCategory(Category) {
     )
 }
 
-export function GetTruthHeaders(LevelName) {
+export function GetLevelData(LevelName) {
     return(
-        Object.keys(GameJSON["Game"]["Levels"][LevelName]["truthtable"][0])
+        GameJSON["Game"]["Levels"][LevelName]
     )
 }

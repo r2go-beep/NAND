@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet } from 'react-native';
 import { Image, Pressable, NativeBaseProvider, Flex, Box, Text, Center, Container, Stack, Button} from "native-base";
 import DropDownArrow from '../icons/DropDownArrow.png';
-import { GetCatagories, GetLevelNamesFromCategory } from "../GameData/LevelSelectLogic";
+import { GetCatagories, GetLevelNamesFromCategory, GetLevelData } from "../GameData/LevelSelectLogic";
 import { checkLevelCompletion } from "../GameData/levelCompleted";
 
 export const ProgressScreen = ({route, navigation}) => {
@@ -25,7 +25,15 @@ export const ProgressScreen = ({route, navigation}) => {
     function showSectionDropDown(LevelName){
         return (
           <Box style={styles.box} key={LevelName}>
-              <Button color={"black"} style={checkLevelCompletion(LevelName) === true ? styles.circuitTextCompleted : styles.circuitTextNotCompleted} onPress={() => navigation.push("LevelScreen",{"circuitName":LevelName})}><Text style={styles.buttonText}>{LevelName}</Text></Button>
+              <Button color={"black"}
+              style={checkLevelCompletion(LevelName) ? styles.circuitTextCompleted : styles.circuitTextNotCompleted}
+              onPress={() => {
+                 navigation.push("LevelScreen",{"circuitName":LevelName, "circuitData":GetLevelData(LevelName.toUpperCase())})}
+              }>
+                <Text style={styles.buttonText}>
+                  {LevelName}
+                </Text>
+              </Button>
           </Box> 
         )
   }   

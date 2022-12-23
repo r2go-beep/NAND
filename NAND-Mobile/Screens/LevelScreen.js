@@ -9,17 +9,7 @@ import { PassedOverlay } from "./PassedOverlay";
 export const LevelScreen = ({route, navigation}) => {
     
     const [circuitName, setCircuitName] = useState(route.params.circuitName);
-
-    const LevelJSON = {
-        "Game": {
-            "Logic Gates": {
-                "Nand": {
-                    "TruthTable": [{a: 0, b: 0, output: 1}, {a: 0, b: 1, output: 1}],
-                    "Hint": "Try using only Nand gates"
-                }
-            } 
-        }
-    }
+    const [circuitData, setCircuitData] = useState(route.params.circuitData);
 
     return (
         <NativeBaseProvider>
@@ -28,8 +18,8 @@ export const LevelScreen = ({route, navigation}) => {
                     <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
                 </Container> 
                 <SelectionBar 
-                    TruthTable={LevelJSON["Game"]["Logic Gates"]["Nand"]["TruthTable"]} 
-                    Hint={LevelJSON["Game"]["Logic Gates"]["Nand"]["Hint"]} />
+                    TruthTable={circuitData["truthtable"]} 
+                    Hint={circuitData["hint"]} />
                 <PassedOverlay key={circuitName} name={circuitName}/>
             </View>
         </NativeBaseProvider>

@@ -3,7 +3,7 @@ import {Box, Text, Center, Pressable, CircleIcon, Modal} from "native-base";
 import { StyleSheet } from 'react-native';
 import { TableOne } from "../Components/Tables";
 
-export const SelectionBar = ({ levelName, Hint, onErase}) => {
+export const SelectionBar = ({ TruthTable, Hint, onErase}) => {
 
     const [showSpecModal, setShowSpecModal] = useState(false);
     const [isErase, setIsErase] = useState(false);
@@ -17,7 +17,7 @@ export const SelectionBar = ({ levelName, Hint, onErase}) => {
                     <Modal.CloseButton />
                     <Modal.Header>Truth Table</Modal.Header>
                     <Modal.Body>
-                        <TableOne levelName={levelName}/>
+                        <TableOne TruthTable={TruthTable}/>
                     </Modal.Body>
                 </Modal.Content>
             </Modal>
@@ -55,7 +55,7 @@ export const SelectionBar = ({ levelName, Hint, onErase}) => {
     return (
         <Box alignSelf="center" style={styles.toolBox}>
             <Pressable onPress={() => {setShowSpecModal(true)}} opacity={showSpecModal ? 1 : 0.5}>
-                {showSpecModal && <SpecModal />}
+                {showSpecModal && <SpecModal TruthTable={TruthTable}/>}
                 <Center>
                     <CircleIcon />
                     <Text>Spec</Text>

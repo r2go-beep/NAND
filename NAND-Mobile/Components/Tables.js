@@ -26,39 +26,47 @@ a  |  b  |
 }]
 */
 
-export const TableOne = ({ levelName }) => {
+export const TableOne = ({ TruthTable }) => {
 
-    function TableHeaders(headerName)
-    {    
-        return(
-            <View style={{width: 50}}>
+    function TableHeader(headerName){   
+        return( 
+            <View style={{flex: 1, justifyContent: "center", alignItems: "center", borderRightWidth:0.5, borderLeftWidth:0.5}} key={headerName}>
                 <Text style={{fontSize: 16, textAlign: "center"}}>
                     {headerName}
                 </Text>
+                <View style={{flexDirection: "row"}}>
+                    {Object.keys(TruthTable[0][headerName]).map((ioName) => TableHeader2(ioName, headerName))}
+                </View>
             </View>
         )
     }
-    
-    const item = ({ item }) => (
-        <View style={{flexDirection: "row"}}>
-            <View style={{width: 50, borderRadius: 1}}>
-                <Text style={{fontSize: 16, textAlign: "center"}}>{item.a}</Text>
+
+    function TableHeader2(ioName, headerName){    
+        return( 
+            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}} key={ioName}>
+                <View style={{borderBottomWidth: 1, width: "100%"}}>
+                    <Text style={{fontSize: 16, textAlign: "center"}}>
+                        {ioName}
+                    </Text>
+                </View>
+                {TruthTable.map((obj) => TableData(obj[headerName][ioName]))}
             </View>
-            <View style={{width: 50}}>
-                <Text style={{fontSize: 16, textAlign: "center"}}>{item.b}</Text>
-            </View>
-            <View style={{width: 50}}>
-                <Text style={{fontSize: 16, textAlign: "center"}}>{item.output}</Text>
-            </View>
-        </View>
-    )
+        )
+    }
+
+    function TableData(dat){
+        return(
+            <Text style={{fontSize: 16}}>
+                {dat}
+            </Text>
+        )
+    }
 
     return (
         <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
             <View style={{flexDirection: "row"}}>
-                {GetTruthHeaders(levelName).map((headerName) => TableHeaders(headerName))}
+                {Object.keys(TruthTable[0]).map((headerName) => TableHeader(headerName))}
             </View>
-            <FlatList renderItem={item}/>
         </View>
     )
 }
