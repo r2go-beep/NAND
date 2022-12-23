@@ -48,7 +48,7 @@
                 "Category": "Simple Circuits",
                 "Local_Name": "Invert",
                 "output": ["!a"],
-                "hint": "Try to make a circuit that invers the given input.",
+                "hint": "Try to make a circuit that inverts the given input.",
                 "input": ["a"],
                 "prereq": 1,
                 "truthtable": [
