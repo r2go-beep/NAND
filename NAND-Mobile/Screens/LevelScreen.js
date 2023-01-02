@@ -12,14 +12,16 @@ export const LevelScreen = ({route, navigation}) => {
     const [circuitName, setCircuitName] = useState(route.params.circuitName);
     const [circuitData, setCircuitData] = useState(route.params.circuitData);
     const [isComplete, setIsComplete] = useState((PlayerJSON["Player"]["Levels"]["completed"] > GameJSON["Game"]["Levels"][circuitName.toUpperCase()]["prereq"]))
+    const [layout, setLayout] = useState({height: 0})
 
     return (
         <NativeBaseProvider>
             <View>
-                <Box style={styles.gameBox} >
-                    <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
+                <Box style={styles.gameBox} onLayout={event => setLayout(event.nativeEvent.layout)}>
+                    <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]} layout={layout}/>
                 </Box> 
                 <SelectionBar 
+                    levelName={circuitName}
                     TruthTable={circuitData["truthtable"]} 
                     Hint={circuitData["hint"]}
                     onMove={() => console.log("Move was pressed")}
@@ -36,11 +38,8 @@ const styles = StyleSheet.create({
     gameBox: {
         alignSelf: "center",
         backgroundColor: "#B8FFAC",
-        marginTop: 20,
         width: "100%",
         minHeight: "80%",
         maxHeight: "80%",
-        borderColor: "black",
-        borderWidth: 2
     },
 })

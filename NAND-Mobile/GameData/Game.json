@@ -7,6 +7,7 @@
                 "output": ["!(a && b)"],
                 "hint": "Try to make a circuit that is inactive when both inputs are active.",
                 "input": ["a","b"],
+                "toolbox": ["NAND"],
                 "prereq": 0,
                 "truthtable": [
                     {
@@ -50,6 +51,7 @@
                 "output": ["!a"],
                 "hint": "Try to make a circuit that inverts the given input.",
                 "input": ["a"],
+                "toolbox": ["NAND"],
                 "prereq": 1,
                 "truthtable": [
                     {

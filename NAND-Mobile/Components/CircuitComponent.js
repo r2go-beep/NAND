@@ -1,8 +1,14 @@
-import {  StyleSheet, PanResponder, Animated, View } from 'react-native'
+import { Dimensions, StyleSheet, View} from 'react-native'
 import { Text, Box, Container, } from 'native-base'
 import React, { useRef } from "react";
+import Draggable from 'react-native-draggable';
 
-export const CircuitComponent = ({name, inputChars, outputChars, borderWidth, borderHeight}) => {
+export const CircuitComponent = ({name, inputChars, outputChars, layout}) => {
+    const screen = Dimensions.get("screen")
+    const y_min = 0
+    const y_max = layout.height
+    const x_min = 0
+    const x_max = screen.width
 
     function IOBox(IOChar) {
         return(
@@ -10,37 +16,11 @@ export const CircuitComponent = ({name, inputChars, outputChars, borderWidth, bo
                 {IOChar}
             </Box>
         )
-    }
-
-    const pan = useRef(new Animated.ValueXY()).current;
-
-    const panResponder = useRef(
-        PanResponder.create({
-        onMoveShouldSetPanResponder: () => true,
-        onPanResponderGrant: () => {
-            pan.setOffset({
-            x: pan.x._value,
-            y: pan.y._value
-            });
-        },
-        onPanResponderMove: Animated.event(
-            [
-            null,
-            { dx: pan.x, dy: pan.y }
-            ],
-            {useNativeDriver: false}
-        ),
-        onPanResponderRelease: () => {
-            pan.flattenOffset();
-        }
-        })
-    ).current;
+    } 
 
     return (
-        <Animated.View style={{transform: [{ translateX: pan.x.interpolate({inputRange:[0, 205], outputRange:[0, 205], extrapolate:"clamp"}) }, { translateY: pan.y }]
-        }}
-        {...panResponder.panHandlers}>
-            <Container>
+        <Draggable minY={y_min} maxY={y_max} minX={x_min} maxX={x_max}>
+           <Container>
                 <Container style={styles.IOContainer}>
                     {outputChars.map((outputChar) => (IOBox(outputChar)))}
                 </Container>
@@ -53,7 +33,7 @@ export const CircuitComponent = ({name, inputChars, outputChars, borderWidth, bo
                     {inputChars.map((inputChar) => (IOBox(inputChar)))}
                 </Container>
             </Container>
-        </Animated.View>
+        </Draggable>
     )
 }
 

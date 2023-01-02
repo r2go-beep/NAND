@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {Box, Text, Center, Pressable, CircleIcon, Modal, View} from "native-base";
 import { StyleSheet } from 'react-native';
 import { TruthTableComp } from "./TruthTableComp";
+import { Toolbox } from "./Toolbox";
 
 const ToolBarModal = ({isOpen, onClose, Header, Body}) => {
     return(
@@ -29,7 +30,7 @@ const EnumSelectedMod = {
     none: 6
 }
 
-export const SelectionBar = ({ TruthTable, Hint, onErase, onMove, onLine}) => {
+export const SelectionBar = ({ levelName, TruthTable, Hint, onErase, onMove, onLine}) => {
 
     const [selectedMod, setSelectedMod] = useState(EnumSelectedMod.none);
 
@@ -54,7 +55,7 @@ export const SelectionBar = ({ TruthTable, Hint, onErase, onMove, onLine}) => {
                     isOpen={true} 
                     onClose={() => setSelectedMod(EnumSelectedMod.none)}
                     Header={"Toolbox"}
-                    Body={""}
+                    Body={<Toolbox levelName={levelName}/>}
                 />}
                 <Center>
                     <CircleIcon />
