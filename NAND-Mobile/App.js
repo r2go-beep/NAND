@@ -53,10 +53,10 @@ const Screens = (props) => {
 
 export default function App() {
   return (
-        <NativeBaseProvider styles={{fontFamily:'Plus-Jakarta-Sans'}}>
-             <NavigationContainer>
-              <Screens />
-            </NavigationContainer>
-        </NativeBaseProvider>
+    <NativeBaseProvider styles={{fontFamily:'Plus-Jakarta-Sans'}}>
+          <NavigationContainer>
+          <Screens />
+        </NavigationContainer>
+    </NativeBaseProvider>
   );
 }

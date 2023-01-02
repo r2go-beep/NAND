@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NativeBaseProvider, View, Box} from "native-base";
 import { StyleSheet } from 'react-native';
-import { CircuitComponent } from "../Components/CircuitComponent";
 import { SelectionBar } from "../Components/SelectionBar";
 import { PassedOverlay } from "./PassedOverlay";
+import { GameBox } from "../Components/GameBox";
 import * as PlayerJSON from "../GameData/Player.json"
 import * as GameJSON from "../GameData/Game.json"
 
@@ -15,10 +15,8 @@ export const LevelScreen = ({route, navigation}) => {
 
     return (
         <NativeBaseProvider>
-            <View>
-                <Box style={styles.gameBox} >
-                    <CircuitComponent name={circuitName} inputChars={["a","b"]} outputChars={["y"]}/>
-                </Box> 
+            <View style={styles.levelScreenView}>
+                <GameBox />
                 <SelectionBar 
                     TruthTable={circuitData["truthtable"]} 
                     Hint={circuitData["hint"]}
@@ -33,14 +31,9 @@ export const LevelScreen = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    gameBox: {
-        alignSelf: "center",
-        backgroundColor: "#B8FFAC",
-        marginTop: 20,
-        width: "100%",
-        minHeight: "80%",
-        maxHeight: "80%",
-        borderColor: "black",
-        borderWidth: 2
-    },
+    levelScreenView: {
+        height: "100%",
+        display: "flex",
+        flexFlow: "column",
+    }
 })

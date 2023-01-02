@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Box, Text, Center, Pressable, CircleIcon, Modal, View} from "native-base";
 import { StyleSheet } from 'react-native';
-import { TruthTableComp } from "./TruthTableComp";
+import { TruthTableComp } from './TruthTableComp';
 
 const ToolBarModal = ({isOpen, onClose, Header, Body}) => {
     return(
@@ -100,22 +100,12 @@ export const SelectionBar = ({ TruthTable, Hint, onErase, onMove, onLine}) => {
 };
 
 const styles = StyleSheet.create({
-    gameBox: {
-        alignSelf: "center",
-        backgroundColor: "#B8FFAC",
-        marginTop: 20,
-        width: "100%",
-        minHeight: "80%",
-        maxHeight: "80%",
-        borderRadius: 15,
-        borderColor: "black",
-        borderWidth: 2
-    },
     toolBox: {
+        flex: 0,
         width: "100%",
         maxWidth: "100%",
-        minHeight: "20%",
-        maxHeight: "80%",
+        marginTop: "7%",
+        marginBottom: "10%",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
